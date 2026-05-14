@@ -32,7 +32,7 @@ spec:
               mountPath: /app/google-credentials.json
               subPath: google-credentials.json
               readOnly: true
-            - name: tokens
+            - name: google-credentials
               mountPath: /app/tokens.json
               subPath: tokens.json
           readinessProbe:
@@ -54,10 +54,6 @@ spec:
         - name: google-credentials
           secret:
             secretName: {{ include "hultetvsf-app.fullname" . }}-google-credentials
-        - name: tokens
-          secret:
-            secretName: {{ include "hultetvsf-app.fullname" . }}-tokens
-            optional: true
       
       nodeSelector:
         {{- toYaml .Values.nodeSelector | nindent 8 }}
