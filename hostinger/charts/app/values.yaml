@@ -9,6 +9,10 @@ image:
   tag: "latest"
   pullPolicy: Always
 
+# Image pull secrets for private registry
+imagePullSecrets:
+  - name: ghcr-pull-secret
+
 # Single Express server serving static files and API
 containerPort: 3000
 
