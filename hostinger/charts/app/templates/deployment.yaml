@@ -29,13 +29,12 @@ spec:
               value: "{{ .Values.containerPort }}"
           volumeMounts:
             - name: google-credentials
-              mountPath: /app/credentials
-              readOnly: true
-            - name: gauth
-              mountPath: /app/google-creds
+              mountPath: /app/google-credentials.json
+              subPath: google-credentials.json
               readOnly: true
             - name: tokens
-              mountPath: /app/token-data
+              mountPath: /app/tokens.json
+              subPath: tokens.json
           readinessProbe:
             httpGet:
               path: /health
@@ -55,9 +54,6 @@ spec:
         - name: google-credentials
           secret:
             secretName: {{ include "hultetvsf-app.fullname" . }}-google-credentials
-        - name: gauth
-          secret:
-            secretName: {{ include "hultetvsf-app.fullname" . }}-gauth
         - name: tokens
           secret:
             secretName: {{ include "hultetvsf-app.fullname" . }}-tokens
