@@ -1,0 +1,47 @@
+replicaCount: 1
+
+## basePath controls the path under which the app is hosted.
+# Use a leading and trailing slash, e.g. /hultetvsf/
+basePath: "/hultetvsf/"
+
+image:
+  repository: ghcr.io/hultetvsf/app-hostinger
+  tag: "latest"
+  pullPolicy: Always
+
+# Single Express server serving static files and API
+containerPort: 3000
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  limits:
+    memory: "256Mi"
+    cpu: "500m"
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+
+ingress:
+  enabled: true
+  annotations: {}
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+# Google API credentials (to be provided via sealed-secrets or external secrets)
+google:
+  credentials:
+    installed:
+      client_id: ""
+      project_id: ""
+      client_secret: ""
+      redirect_uris: ["http://localhost"]
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

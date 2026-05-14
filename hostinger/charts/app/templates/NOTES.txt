@@ -1,0 +1,12 @@
+1. Get the application URL by running these commands after a successful install:
+
+  export POD_NAME=$(kubectl get pods -l app.kubernetes.io/instance={{ .Release.Name }} -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://$(kubectl get svc --selector=app.kubernetes.io/instance={{ .Release.Name }} -o jsonpath='{.items[0].spec.clusterIP}'):{{ .Values.service.port }}{{ .Values.basePath }} if your cluster supports clusterIP access"
+
+2. If you enabled ingress, run:
+
+  kubectl get ingress {{ include "hultetvsf-app.fullname" . }}
+
+3. To uninstall:
+
+  helm uninstall {{ .Release.Name }}
