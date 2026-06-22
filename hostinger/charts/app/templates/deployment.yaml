@@ -27,6 +27,8 @@ spec:
           env:
             - name: PORT
               value: "{{ .Values.containerPort }}"
+            - name: K8S_SECRET_NAME
+              value: "{{ include "hultetvsf-app.fullname" . }}-google-credentials"
           volumeMounts:
             - name: google-credentials
               mountPath: /app/google-credentials.json
