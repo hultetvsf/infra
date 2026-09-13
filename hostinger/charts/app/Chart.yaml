@@ -2,8 +2,8 @@ apiVersion: v2
 name: hultetvsf-app
 description: A Helm chart to deploy the hultetvsf app (Express server with Google Drive integration)
 type: application
-version: 0.1.66-09a6753d
-appVersion: "09a6753d"
+version: 0.1.67-28bcb16c
+appVersion: "28bcb16c"
 keywords:
   - hultetvsf
   - web
